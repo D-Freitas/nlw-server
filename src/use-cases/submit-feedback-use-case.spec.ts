@@ -43,4 +43,13 @@ describe('Submit feedback', () => {
       screenshot: 'test.jpg'
     })).rejects.toThrow()
   })
+
+  it('should send feedback with screenshot if screenshot exists', async () => {
+    const sendFeedbackToEmail = await submitFeedback.execute({
+      type: 'BUG',
+      comment: 'example comment',
+      screenshot: 'data:image/png;base64,dowkodwdw'
+    })
+    expect(sendFeedbackToEmail).toBe('sent feedback with screenshot')
+  })
 })
