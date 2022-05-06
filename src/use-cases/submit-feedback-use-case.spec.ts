@@ -52,4 +52,13 @@ describe('Submit feedback', () => {
     })
     expect(sendFeedbackToEmail).toBe('sent feedback with screenshot')
   })
+
+  it('should send feedback without screenshot if screenshot doesn\'t exists', async () => {
+    const sendFeedbackToEmail = await submitFeedback.execute({
+      type: 'BUG',
+      comment: 'example comment',
+      screenshot: ''
+    })
+    expect(sendFeedbackToEmail).toBe('sent feedback without screenshot')
+  })
 })
